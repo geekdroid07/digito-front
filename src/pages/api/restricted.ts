@@ -9,6 +9,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             token: sessionToken as string,
             secret: process.env.NEXT_PUBLIC_SECRET
         });
+        console.log(decoded);
+        
         if (decoded?.email) {
             res.send({ok: true});
         } else {
