@@ -10,7 +10,7 @@ const MyApp = ({ Component, pageProps: { session, ...pageProps } }) => {
 
   const [state, setState] = useState({
     isRouteChanging: false,
-    loadingKey: 0,
+    loadingKey: 0
   });
 
   useEffect(() => {
