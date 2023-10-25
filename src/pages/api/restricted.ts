@@ -1,17 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { decode } from 'next-auth/jwt';
+import { decode, getToken } from 'next-auth/jwt';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
+        console.log(req.cookies);
+        
         const sessionToken = req.cookies['next-auth.session-token'];
-        console.log(process.env.NEXT_PUBLIC_SECRET);
         console.log({sessionToken});
         
         const decoded = await decode({
             token: sessionToken as string,
             secret: process.env.NEXT_PUBLIC_SECRET
         });
-        console.log(decoded);
         
         if (decoded?.email) {
             res.send({ok: true});
