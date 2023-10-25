@@ -5,11 +5,11 @@ export default NextAuth({
   session: {
     strategy: "jwt",
   },
-  secret: 'token_secret_suhhh',
+  secret: process.env.NEXT_PUBLIC_SECRET,
   providers: [
     GoogleProvider({
-      clientId: '813686813254-8vpmn05jm03g5s7td83rvimeumqv66rb.apps.googleusercontent.com',
-      clientSecret: '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'
+      clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
+      clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET
     }),
   ],
   callbacks: {

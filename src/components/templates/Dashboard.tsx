@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '@/components/elements/Button';
-import { axios } from '@/config/axios';
+import { axios as axiosConfig } from '@/config/axios';
+import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
 import { signIn, useSession, getSession, signOut } from 'next-auth/react';
@@ -10,7 +11,7 @@ export default function Dashboard() {
 
   const PingBackend = async () => {
     try {
-        const {data} = await axios.get(`/ping`);
+        const {data} = await axiosConfig.get(`/ping`);
 
         if (data?.data?.ok) {
             toast.success('server responded');
@@ -29,8 +30,8 @@ export default function Dashboard() {
   const CheckLoggedUser = async () => {
     if (user?.user) {
       try {
-        const {data} = await axios.get(`/restricted`);
-        if (data?.data?.ok) {
+        const {data} = await axios.get(`/api/restricted`);
+        if (data?.ok) {
           toast.success('server responded with logged-in user');
         }
       } catch (ex: any) {
@@ -65,7 +66,7 @@ export default function Dashboard() {
       {user?.user && <Button
           size="sm"
           variant="outline-secondary"
-          className="w-10/12 py-3 mt-8 text-center text-lg xl:w-full sm:w-6/12"
+          className="w-10/12 py-3 mt-8 text-lg text-center xl:w-full sm:w-6/12"
           onClick={signout}
           >
           SIGN OUT
