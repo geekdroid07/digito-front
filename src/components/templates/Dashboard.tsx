@@ -33,6 +33,8 @@ export default function Dashboard() {
         const {data} = await axios.get(`/api/restricted`);
         if (data?.ok) {
           toast.success('server responded with logged-in user');
+        } else {
+          toast.error('an error has occurred');
         }
       } catch (ex: any) {
         toast.error(ex?.message);
