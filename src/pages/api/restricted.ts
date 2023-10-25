@@ -3,9 +3,7 @@ import { decode, getToken } from 'next-auth/jwt';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
-        console.log(req.cookies);
-        
-        const sessionToken = req.cookies['next-auth.session-token'];
+        const sessionToken = req.cookies['__Secure-next-auth.session-token'];
         console.log({sessionToken});
         
         const decoded = await decode({
