@@ -6,7 +6,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     
     const decoded = await decode({
         token: sessionToken as string,
-        secret: process.env.NEXT_PUBLIC_SECRET,
+        secret: process.env.NEXT_PUBLIC_SECRET
     });
     if (decoded.email) {
         res.send({ok: true})
